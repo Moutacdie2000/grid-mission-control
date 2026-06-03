@@ -1,0 +1,20 @@
+{
+  "name": "grid",
+  "private": true,
+  "version": "1.0.0",
+  "description": "GRID — tableau de bord d'observabilité temps réel (esthétique mission control).",
+  "type": "module",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n SRV,WEB -c yellow,green \"npm -w @grid/server run dev\" \"npm -w @grid/web run dev\"",
+    "build": "npm -w @grid/web run build",
+    "start": "npm -w @grid/server run start",
+    "preview": "npm run build && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
