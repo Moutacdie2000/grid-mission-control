@@ -15,11 +15,9 @@ C'est un projet **full-stack** : un backend Node (Fastify) qui simule la flotte,
 
 ## 🖼️ Aperçu
 
-GRID en fonctionnement — constantes vitales, tendances sur 2 min, flotte et journal live :
+GRID en fonctionnement — constantes vitales, tendances sur 2 min, flotte et journal d'événements live :
 
 ![Aperçu de GRID — mission control](docs/screenshot.png)
-
-> _Pas encore d'image ? Lancez `npm run dev` puis enregistrez une capture sous `docs/screenshot.png`._
 
 ## 📋 Sommaire
 
