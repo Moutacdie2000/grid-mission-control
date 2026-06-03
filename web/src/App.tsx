@@ -44,7 +44,7 @@ export function App() {
         <Boot connected={connected} />
       ) : (
         <main className={styles.main}>
-          {!connected && <div className={styles.reconnect}>LIEN PERDU — RECONNEXION…</div>}
+          {!connected && <div className={styles.reconnect}>LIEN PERDU, RECONNEXION…</div>}
 
           <Panel
             title="CONSTANTES VITALES"

@@ -72,7 +72,7 @@ async function buildApp() {
 
   // ---------- Routes API ----------
 
-  // GET /api/health — sonde de vivacité.
+  // GET /api/health, sonde de vivacité.
   app.get('/api/health', async () => ({
     status: 'ok',
     version: VERSION,
@@ -80,10 +80,10 @@ async function buildApp() {
     hosts: hostsTotal(),
   }));
 
-  // GET /api/hosts — instantané complet de la flotte.
+  // GET /api/hosts, instantané complet de la flotte.
   app.get('/api/hosts', async () => getSnapshot(simulator.activeIncidents()));
 
-  // GET /api/series/:hostId?metric=cpu&points=120 — série temporelle d'une métrique.
+  // GET /api/series/:hostId?metric=cpu&points=120, série temporelle d'une métrique.
   app.get('/api/series/:hostId', async (request, reply) => {
     const { hostId } = /** @type {{ hostId: string }} */ (request.params);
     const query = /** @type {{ metric?: string, points?: string }} */ (request.query);
@@ -101,7 +101,7 @@ async function buildApp() {
     return series;
   });
 
-  // POST /api/ingest — voie d'ingestion : applique des overrides de métriques.
+  // POST /api/ingest, voie d'ingestion : applique des overrides de métriques.
   app.post('/api/ingest', async (request, reply) => {
     const body = /** @type {{ hostId?: unknown, metrics?: unknown }} */ (request.body);
     if (
@@ -121,7 +121,7 @@ async function buildApp() {
     return { ok: true };
   });
 
-  // GET /api/stream — flux Server-Sent Events (snapshots + alertes + heartbeat).
+  // GET /api/stream, flux Server-Sent Events (snapshots + alertes + heartbeat).
   app.get('/api/stream', (request, reply) => {
     // On prend la main sur la réponse brute : Fastify ne doit pas la sérialiser.
     reply.hijack();
@@ -223,7 +223,7 @@ function printBanner(port) {
     '',
     '  ███  ██████  ██ ██████   ',
     ' ██     ██   ██ ██ ██   ██ ',
-    ' ██ ███ ██████  ██ ██   ██   GRID — control plane',
+    ' ██ ███ ██████  ██ ██   ██   GRID, control plane',
     ' ██  ██ ██   ██ ██ ██   ██ ',
     '  ███  ██   ██ ██ ██████   ',
     '',

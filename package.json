@@ -2,7 +2,7 @@
   "name": "grid",
   "private": true,
   "version": "1.0.0",
-  "description": "GRID — tableau de bord d'observabilité temps réel (esthétique mission control).",
+  "description": "GRID, tableau de bord d'observabilité temps réel (esthétique mission control).",
   "type": "module",
   "workspaces": [
     "server",

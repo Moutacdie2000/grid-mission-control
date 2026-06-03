@@ -98,7 +98,7 @@ export function thresholdMessage(severity, hostName, metric, value) {
   const unit = rule ? rule.unit : '';
   const seuil = rule ? (severity === 'crit' ? rule.crit : rule.warn) : 0;
   const niveau = severity === 'crit' ? 'critique' : 'élevé';
-  return `${hostName} — ${label} ${niveau} : ${value}${unit} (seuil ${seuil}${unit})`;
+  return `${hostName}, ${label} ${niveau} : ${value}${unit} (seuil ${seuil}${unit})`;
 }
 
 /**
@@ -112,5 +112,5 @@ export function recoveryMessage(hostName, metric, value) {
   const rule = RULES[metric];
   const label = rule ? rule.label : metric;
   const unit = rule ? rule.unit : '';
-  return `${hostName} — ${label} rétablie : ${value}${unit} sous les seuils`;
+  return `${hostName}, ${label} rétablie : ${value}${unit} sous les seuils`;
 }

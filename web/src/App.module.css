@@ -99,7 +99,7 @@
   animation: led-blink 1.2s infinite;
 }
 
-/* — Écran de démarrage (avant le 1er snapshot) — */
+/*, Écran de démarrage (avant le 1er snapshot), */
 .boot {
   flex: 1;
   display: flex;

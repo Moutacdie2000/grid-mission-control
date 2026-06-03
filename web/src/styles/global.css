@@ -1,29 +1,29 @@
 /* ============================================================================
-   GRID — design system « salle de contrôle / CRT phosphore »
+   GRID, design system « salle de contrôle / CRT phosphore »
    Tokens, reset, atmosphère (grille, scanlines, grain, vignette), animations.
    ========================================================================== */
 
 :root {
-  /* — Fonds — */
+  /*, Fonds, */
   --bg-void: #06080a;
   --bg-deep: #040607;
   --bg-panel: rgba(13, 17, 20, 0.66);
   --bg-panel-solid: #0b0f12;
   --bg-inset: rgba(0, 0, 0, 0.34);
 
-  /* — Lignes & bords (teintés ambre) — */
+  /*, Lignes & bords (teintés ambre), */
   --grid-line: rgba(255, 176, 0, 0.045);
   --edge: rgba(255, 176, 0, 0.14);
   --edge-soft: rgba(255, 176, 0, 0.08);
   --edge-bright: rgba(255, 176, 0, 0.42);
 
-  /* — Phosphore ambre (couleur primaire) — */
+  /*, Phosphore ambre (couleur primaire), */
   --amber: #ffb000;
   --amber-bright: #ffce5c;
   --amber-dim: #9a7212;
   --amber-ghost: rgba(255, 176, 0, 0.14);
 
-  /* — Statuts — */
+  /*, Statuts, */
   --green: #2ee36e;
   --green-dim: #1c7a3f;
   --orange: #ff9838;
@@ -32,22 +32,22 @@
   --cyan: #38e0e0;
   --violet: #b08cff;
 
-  /* — Texte (blanc chaud « parchemin ») — */
+  /*, Texte (blanc chaud « parchemin »), */
   --text: #e7e0cd;
   --text-dim: #9b9482;
   --text-faint: #5f5e54;
   --text-ghost: #3a3a34;
 
-  /* — Typographie — */
+  /*, Typographie, */
   --font-display: 'Chakra Petch', 'IBM Plex Mono', monospace;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
-  /* — Géométrie — */
+  /*, Géométrie, */
   --radius: 2px;
   --gap: 14px;
   --border: 1px solid var(--edge);
 
-  /* — Glow — */
+  /*, Glow, */
   --glow-amber: 0 0 6px rgba(255, 176, 0, 0.55), 0 0 18px rgba(255, 176, 0, 0.16);
   --glow-green: 0 0 6px rgba(46, 227, 110, 0.6);
   --glow-red: 0 0 8px rgba(255, 77, 77, 0.7);
@@ -89,7 +89,7 @@ body {
   color: #fff;
 }
 
-/* — Scrollbars fines, teintées — */
+/*, Scrollbars fines, teintées, */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--amber-dim) transparent;

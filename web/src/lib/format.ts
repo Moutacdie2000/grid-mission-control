@@ -1,4 +1,4 @@
-// Helpers de formatage — sortie en français, style « instrument ».
+// Helpers de formatage, sortie en français, style « instrument ».
 
 const NBSP = ' ' // fine insécable, pour les milliers
 

@@ -2,7 +2,7 @@
   "name": "@grid/server",
   "private": true,
   "version": "1.0.0",
-  "description": "GRID — backend d'observabilité temps réel (API REST + flux SSE).",
+  "description": "GRID, backend d'observabilité temps réel (API REST + flux SSE).",
   "type": "module",
   "main": "src/server.js",
   "scripts": {

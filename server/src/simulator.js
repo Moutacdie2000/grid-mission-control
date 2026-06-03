@@ -338,11 +338,11 @@ class Simulator {
     if (hosts.length === 0) return;
     const host = hosts[Math.floor(Math.random() * hosts.length)];
     const kinds = [
-      () => ({ metric: 'rps', message: `${host.name} — déploiement v${randInt(1, 9)}.${randInt(0, 9)}.${randInt(0, 9)} appliqué` }),
-      () => ({ metric: 'cpu', message: `${host.name} — autoscaling : +${randInt(1, 3)} instance(s)` }),
-      () => ({ metric: 'cpu', message: `${host.name} — autoscaling : -${randInt(1, 2)} instance(s)` }),
-      () => ({ metric: 'mem', message: `${host.name} — rotation de cache effectuée` }),
-      () => ({ metric: 'latencyMs', message: `${host.name} — bascule de trafic terminée` }),
+      () => ({ metric: 'rps', message: `${host.name}, déploiement v${randInt(1, 9)}.${randInt(0, 9)}.${randInt(0, 9)} appliqué` }),
+      () => ({ metric: 'cpu', message: `${host.name}, autoscaling : +${randInt(1, 3)} instance(s)` }),
+      () => ({ metric: 'cpu', message: `${host.name}, autoscaling : -${randInt(1, 2)} instance(s)` }),
+      () => ({ metric: 'mem', message: `${host.name}, rotation de cache effectuée` }),
+      () => ({ metric: 'latencyMs', message: `${host.name}, bascule de trafic terminée` }),
     ];
     const pick = kinds[Math.floor(Math.random() * kinds.length)]();
     this.emit(

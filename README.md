@@ -9,15 +9,15 @@
 ![SSE](https://img.shields.io/badge/Temps%20réel-SSE-FFB000)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-GRID surveille une flotte de serveurs/services et restitue leurs métriques **en direct** : jauges en arc, sparklines, état de la flotte et journal d'événements qui défile. Le tout dans un thème « centre de contrôle » assumé — pensé pour **ne ressembler à aucun dashboard générique**.
+GRID surveille une flotte de serveurs/services et restitue leurs métriques **en direct** : jauges en arc, sparklines, état de la flotte et journal d'événements qui défile. Le tout dans un thème « centre de contrôle » assumé, pensé pour **ne ressembler à aucun dashboard générique**.
 
 C'est un projet **full-stack** : un backend Node (Fastify) qui simule la flotte, expose une API REST et un flux **Server-Sent Events**, et un front **React + TypeScript** qui consomme ce flux et dessine des instruments en SVG.
 
 ## 🖼️ Aperçu
 
-GRID en fonctionnement — constantes vitales, tendances sur 2 min, flotte et journal d'événements live :
+GRID en fonctionnement, constantes vitales, tendances sur 2 min, flotte et journal d'événements live :
 
-![Aperçu de GRID — mission control](docs/screenshot.png)
+![Aperçu de GRID, mission control](docs/screenshot.png)
 
 ## 📋 Sommaire
 
@@ -62,7 +62,7 @@ Identité **« salle de contrôle / CRT phosphore »**, exécutée avec précisi
 
 | Élément | Choix |
 |--------|-------|
-| **Typographie** | `Chakra Petch` (display technique, anguleux) + `IBM Plex Mono` (données) — délibérément hors des polices génériques |
+| **Typographie** | `Chakra Petch` (display technique, anguleux) + `IBM Plex Mono` (données), délibérément hors des polices génériques |
 | **Couleur** | Noir profond légèrement chaud · **ambre phosphore** dominant (`#FFB000`) · vert « nominal » · rouge « critique » · cyan secondaire |
 | **Atmosphère** | Scanlines CRT, grain animé, vignette, **glow** sur le texte, fond en **grille** (clin d'œil au nom) |
 | **Instruments** | Jauges en **arc 270° dessinées en SVG** (graduations + glow), sparklines à dégradé, LED de statut clignotantes |
@@ -174,4 +174,4 @@ GRID se conteneurise en une image (build front + serveur Node) et se déploie na
 
 ## 📄 Licence
 
-MIT — voir [LICENSE](LICENSE). © 2026 Noumabeu Moutacdie Jordan
+MIT, voir [LICENSE](LICENSE). © 2026 Noumabeu Moutacdie Jordan
