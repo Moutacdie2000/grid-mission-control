@@ -1,0 +1,225 @@
+/* ============================================================================
+   GRID — design system « salle de contrôle / CRT phosphore »
+   Tokens, reset, atmosphère (grille, scanlines, grain, vignette), animations.
+   ========================================================================== */
+
+:root {
+  /* — Fonds — */
+  --bg-void: #06080a;
+  --bg-deep: #040607;
+  --bg-panel: rgba(13, 17, 20, 0.66);
+  --bg-panel-solid: #0b0f12;
+  --bg-inset: rgba(0, 0, 0, 0.34);
+
+  /* — Lignes & bords (teintés ambre) — */
+  --grid-line: rgba(255, 176, 0, 0.045);
+  --edge: rgba(255, 176, 0, 0.14);
+  --edge-soft: rgba(255, 176, 0, 0.08);
+  --edge-bright: rgba(255, 176, 0, 0.42);
+
+  /* — Phosphore ambre (couleur primaire) — */
+  --amber: #ffb000;
+  --amber-bright: #ffce5c;
+  --amber-dim: #9a7212;
+  --amber-ghost: rgba(255, 176, 0, 0.14);
+
+  /* — Statuts — */
+  --green: #2ee36e;
+  --green-dim: #1c7a3f;
+  --orange: #ff9838;
+  --red: #ff4d4d;
+  --red-dim: #7d2020;
+  --cyan: #38e0e0;
+  --violet: #b08cff;
+
+  /* — Texte (blanc chaud « parchemin ») — */
+  --text: #e7e0cd;
+  --text-dim: #9b9482;
+  --text-faint: #5f5e54;
+  --text-ghost: #3a3a34;
+
+  /* — Typographie — */
+  --font-display: 'Chakra Petch', 'IBM Plex Mono', monospace;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* — Géométrie — */
+  --radius: 2px;
+  --gap: 14px;
+  --border: 1px solid var(--edge);
+
+  /* — Glow — */
+  --glow-amber: 0 0 6px rgba(255, 176, 0, 0.55), 0 0 18px rgba(255, 176, 0, 0.16);
+  --glow-green: 0 0 6px rgba(46, 227, 110, 0.6);
+  --glow-red: 0 0 8px rgba(255, 77, 77, 0.7);
+  --glow-cyan: 0 0 6px rgba(56, 224, 224, 0.55);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--text);
+  background-color: var(--bg-void);
+  /* Glow haut + grille ambre subtile (clin d'œil au nom GRID). */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(255, 176, 0, 0.07), transparent 60%),
+    radial-gradient(100% 100% at 50% 120%, rgba(56, 224, 224, 0.04), transparent 55%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 34px 34px, 34px 34px;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+::selection {
+  background: rgba(255, 176, 0, 0.28);
+  color: #fff;
+}
+
+/* — Scrollbars fines, teintées — */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--amber-dim) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 176, 0, 0.22);
+  border-radius: 0;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 176, 0, 0.4);
+}
+
+/* ============================================================================
+   Overlays plein écran (atmosphère CRT). pointer-events: none.
+   ========================================================================== */
+.fx {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+}
+/* Scanlines horizontales, légère dérive verticale. */
+.fx::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.16) 0,
+    rgba(0, 0, 0, 0.16) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  animation: scan-drift 9s linear infinite;
+}
+/* Vignette : assombrit les bords pour le galbe « tube ». */
+.fx::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 52%, rgba(0, 0, 0, 0.55) 100%);
+}
+/* Grain animé (turbulence SVG en data-uri). */
+.fx-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9001;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 0.6s steps(3) infinite;
+}
+
+/* ============================================================================
+   Primitives typographiques réutilisables
+   ========================================================================== */
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.readout {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.glow-amber { color: var(--amber); text-shadow: var(--glow-amber); }
+.glow-green { color: var(--green); text-shadow: var(--glow-green); }
+.glow-red { color: var(--red); text-shadow: var(--glow-red); }
+.glow-cyan { color: var(--cyan); text-shadow: var(--glow-cyan); }
+
+/* ============================================================================
+   Animations
+   ========================================================================== */
+@keyframes scan-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(3px); }
+}
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(-3%, 2%); }
+  66% { transform: translate(2%, -2%); }
+  100% { transform: translate(0, 0); }
+}
+/* Séquence de « boot » : les panneaux s'allument en cascade. */
+@keyframes power-on {
+  0% { opacity: 0; transform: translateY(6px) scale(0.996); filter: brightness(2.4); }
+  40% { opacity: 1; filter: brightness(1.6); }
+  55% { filter: brightness(0.85); }
+  70% { filter: brightness(1.35); }
+  100% { opacity: 1; transform: none; filter: brightness(1); }
+}
+@keyframes led-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes sweep-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes value-flash {
+  from { color: var(--amber-bright); text-shadow: 0 0 12px rgba(255, 206, 92, 0.8); }
+  to { color: inherit; }
+}
+/* Très légère oscillation de luminosité globale (CRT). */
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  97% { opacity: 1; }
+  98% { opacity: 0.96; }
+  99% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx::before,
+  .fx-grain {
+    animation: none;
+  }
+}
