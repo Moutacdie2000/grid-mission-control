@@ -1,0 +1,74 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-panel);
+  border: var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(2px);
+  animation: power-on 0.55s both;
+  overflow: hidden;
+}
+
+/* Coins « instrument » (haut-gauche / bas-droite). */
+.panel::before,
+.panel::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.panel::before {
+  top: 5px;
+  left: 5px;
+  border-top: 1px solid var(--edge-bright);
+  border-left: 1px solid var(--edge-bright);
+}
+.panel::after {
+  bottom: 5px;
+  right: 5px;
+  border-bottom: 1px solid var(--edge-bright);
+  border-right: 1px solid var(--edge-bright);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--edge-soft);
+  background: linear-gradient(180deg, rgba(255, 176, 0, 0.05), transparent);
+  flex: none;
+}
+.title {
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.headRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+
+.body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: 14px;
+}
+.noPad {
+  padding: 0;
+}
