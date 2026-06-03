@@ -1,0 +1,152 @@
+.app {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  animation: crt-flicker 9s infinite;
+}
+
+.main {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: var(--gap);
+  padding: var(--gap);
+  grid-template-columns: 1fr 372px;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    'vitals feed'
+    'trends feed'
+    'fleet  feed';
+}
+
+.vitals {
+  grid-area: vitals;
+}
+.trends {
+  grid-area: trends;
+}
+.fleet {
+  grid-area: fleet;
+  min-height: 0;
+}
+.feedPanel {
+  grid-area: feed;
+  min-height: 0;
+}
+
+.vitalsBody {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.trendsBody {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.trend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.trendHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.trendVal {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--red);
+}
+.recDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: var(--glow-red);
+  animation: led-blink 1s steps(2, end) infinite;
+}
+
+.reconnect {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  padding: 6px 16px;
+  background: rgba(125, 32, 32, 0.85);
+  border: 1px solid var(--red);
+  color: #ffdede;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  animation: led-blink 1.2s infinite;
+}
+
+/* — Écran de démarrage (avant le 1er snapshot) — */
+.boot {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+.bootMark {
+  width: 118px;
+  height: 118px;
+  filter: drop-shadow(0 0 8px rgba(255, 176, 0, 0.4));
+}
+.bootSweep {
+  transform-origin: 60px 60px;
+  animation: sweep-rotate 1.7s linear infinite;
+}
+.bootText {
+  font-family: var(--font-display);
+  letter-spacing: 0.24em;
+  font-size: 13px;
+  color: var(--amber);
+  text-shadow: var(--glow-amber);
+  animation: led-blink 1.4s ease-in-out infinite;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto minmax(320px, 1fr);
+    grid-template-areas:
+      'vitals'
+      'trends'
+      'fleet'
+      'feed';
+    overflow-y: auto;
+  }
+  .vitalsBody {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .trendsBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .vitalsBody {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
